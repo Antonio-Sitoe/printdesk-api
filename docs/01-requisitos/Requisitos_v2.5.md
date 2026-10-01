@@ -20,19 +20,25 @@ Este documento define **o que** o sistema deve fazer e sob que restrições. Nã
 
 ### 1.3. Glossário
 
-| Termo | Definição |
-|---|---|
-| **Cliente** | Organização com contrato de outsourcing, de qualquer sector de actividade. Não é uma pessoa. |
-| **Balcão** | Instalação física de um cliente onde estão alocadas impressoras. Consoante o cliente, pode ser uma agência, uma dependência, um piso ou um escritório. Um cliente pequeno pode ter um único balcão. |
-| **Utilizador Cliente** | Pessoa do cliente, associada a um ou mais balcões, com permissão para submeter pedidos. Submete directamente, sem intermediários. |
-| **Pedido** | Registo de uma solicitação de intervenção sobre uma impressora. Substitui o documento "PEDIDO DE REPARAÇÃO" em papel/email. |
-| **Intervenção** | Deslocação e trabalho efectivo do técnico sobre a máquina. Cada pedido corresponde a uma única intervenção. |
-| **SLA** | Tempo máximo contratado entre a submissão de um pedido e o início da intervenção. Por omissão 24 horas. Não abrange a duração da reparação em si. |
-| **Contador** | Leitura do número acumulado de cópias/impressões da máquina. Base da facturação por cópia. |
+
+| Termo                  | Definição                                                                                                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Cliente**            | Organização com contrato de outsourcing, de qualquer sector de actividade. Não é uma pessoa.                                                                                                        |
+| **Balcão**             | Instalação física de um cliente onde estão alocadas impressoras. Consoante o cliente, pode ser uma agência, uma dependência, um piso ou um escritório. Um cliente pequeno pode ter um único balcão. |
+| **Utilizador Cliente** | Pessoa do cliente, associada a um ou mais balcões, com permissão para submeter pedidos. Submete directamente, sem intermediários.                                                                   |
+| **Pedido**             | Registo de uma solicitação de intervenção sobre uma impressora. Substitui o documento "PEDIDO DE REPARAÇÃO" em papel/email.                                                                         |
+| **Intervenção**        | Deslocação e trabalho efectivo do técnico sobre a máquina. Cada pedido corresponde a uma única intervenção.                                                                                         |
+| **SLA**                | Tempo máximo contratado entre a submissão de um pedido e o início da intervenção. Por omissão 24 horas. Não abrange a duração da reparação em si.                                                   |
+| **Contador**           | Leitura do número acumulado de cópias/impressões da máquina. Base da facturação por cópia.                                                                                                          |
+
 
 ---
 
+
+
 ## 2. Objectivos e critérios de sucesso
+
+
 
 ### 2.1. Objectivos
 
@@ -42,20 +48,28 @@ Este documento define **o que** o sistema deve fazer e sob que restrições. Nã
 4. Constituir um histórico consultável por máquina, por balcão e por técnico.
 5. Passar a medir o cumprimento do SLA em vez de o estimar.
 
+
+
 ### 2.2. Critérios de sucesso (mensuráveis)
 
-| Indicador | Situação actual | Meta |
-|---|---|---|
-| Tempo médio entre submissão e início da intervenção | Não medido | ≤ 24 horas em 90% dos pedidos |
+
+| Indicador                                                 | Situação actual                              | Meta                           |
+| --------------------------------------------------------- | -------------------------------------------- | ------------------------------ |
+| Tempo médio entre submissão e início da intervenção       | Não medido                                   | ≤ 24 horas em 90% dos pedidos  |
 | Tempo entre conclusão da reparação e conhecimento na sede | Depende do regresso ou de chamada telefónica | ≤ 5 minutos (registo no local) |
-| Pedidos com técnico responsável identificado | Não registado | 100% |
-| Máquinas com histórico completo de intervenções | 0% | 100% ao fim de 6 meses |
+| Pedidos com técnico responsável identificado              | Não registado                                | 100%                           |
+| Máquinas com histórico completo de intervenções           | 0%                                           | 100% ao fim de 6 meses         |
+
 
 > **Nota:** os valores da coluna "situação actual" são estimativas herdadas do documento original. Antes do arranque, devem ser medidos durante 2 a 4 semanas sobre o processo de email, ou os ganhos do sistema não serão demonstráveis.
 
 ---
 
+
+
 ## 3. Descrição do problema
+
+
 
 ### 3.1. Processo actual
 
@@ -70,135 +84,175 @@ Não existe nenhuma camada intermediária entre o balcão e a Ricotecnica: é o 
 
 ### 3.2. Falhas identificadas
 
-| # | Falha | Consequência |
-|---|---|---|
-| P1 | Ponto único de passagem no gestor de email | O processo pára quando essa pessoa está ausente ou sobrecarregada |
-| P2 | O técnico não tem acesso à fila de pedidos | Depende de chamada telefónica para saber a próxima intervenção |
-| P3 | Não há técnico responsável por balcão | Vários técnicos intervêm na mesma máquina, sem continuidade de diagnóstico |
-| P4 | Não existe base de dados de intervenções | Impossível saber quantas vezes uma máquina avariou nem porquê |
-| P5 | Fecho da intervenção não é comunicado em tempo real | A sede opera sem informação e gasta tempo a perseguir técnicos |
-| P6 | Servidor de email sobrecarregado | Risco de pedidos perdidos ou atrasados |
-| P7 | Prazo de resposta não é medido | Incumprimentos do SLA só são detectados por queixa do cliente |
+
+| #   | Falha                                               | Consequência                                                               |
+| --- | --------------------------------------------------- | -------------------------------------------------------------------------- |
+| P1  | Ponto único de passagem no gestor de email          | O processo pára quando essa pessoa está ausente ou sobrecarregada          |
+| P2  | O técnico não tem acesso à fila de pedidos          | Depende de chamada telefónica para saber a próxima intervenção             |
+| P3  | Não há técnico responsável por balcão               | Vários técnicos intervêm na mesma máquina, sem continuidade de diagnóstico |
+| P4  | Não existe base de dados de intervenções            | Impossível saber quantas vezes uma máquina avariou nem porquê              |
+| P5  | Fecho da intervenção não é comunicado em tempo real | A sede opera sem informação e gasta tempo a perseguir técnicos             |
+| P6  | Servidor de email sobrecarregado                    | Risco de pedidos perdidos ou atrasados                                     |
+| P7  | Prazo de resposta não é medido                      | Incumprimentos do SLA só são detectados por queixa do cliente              |
+
+
+
 
 ### 3.3. Síntese
 
-| | |
-|---|---|
-| **Problema** | Ausência de plataforma para submissão e acompanhamento de pedidos de intervenção |
-| **Afecta** | Utilizadores dos clientes de outsourcing, equipa técnica, HelpDesk, gestão |
-| **Impacto** | Prazo de resposta não medido nem garantido, equipamento alugado indisponível, ausência de dados de gestão |
-| **Solução** | Portal com submissão, atribuição, notificação, actualização em tempo real e histórico permanente |
+
+|              |                                                                                                           |
+| ------------ | --------------------------------------------------------------------------------------------------------- |
+| **Problema** | Ausência de plataforma para submissão e acompanhamento de pedidos de intervenção                          |
+| **Afecta**   | Utilizadores dos clientes de outsourcing, equipa técnica, HelpDesk, gestão                                |
+| **Impacto**  | Prazo de resposta não medido nem garantido, equipamento alugado indisponível, ausência de dados de gestão |
+| **Solução**  | Portal com submissão, atribuição, notificação, actualização em tempo real e histórico permanente          |
+
 
 ---
 
+
+
 ## 4. Actores e permissões
+
+
 
 ### 4.1. Actores
 
-| Actor | Descrição |
-|---|---|
-| **Utilizador Cliente** | Colaborador do cliente, associado a um ou mais balcões. Submete os pedidos directamente. |
-| **Técnico HelpDesk** | Recebe, triagem e atribui pedidos; agenda intervenções |
-| **Técnico de Impressora** | Técnico de campo; executa e regista intervenções |
-| **Administrador** | Gere utilizadores, clientes, balcões, parque de equipamento e relatórios |
+
+| Actor                     | Descrição                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------- |
+| **Utilizador Cliente**    | Colaborador do cliente, associado a um ou mais balcões. Submete os pedidos directamente. |
+| **Técnico HelpDesk**      | Recebe, triagem e atribui pedidos; agenda intervenções                                   |
+| **Técnico de Impressora** | Técnico de campo; executa e regista intervenções                                         |
+| **Administrador**         | Gere utilizadores, clientes, balcões, parque de equipamento e relatórios                 |
+
 
 **Princípio de modelação:** existe **uma única entidade Utilizador**. Os actores acima são *papéis* atribuídos a um utilizador, não tipos de pessoa distintos. Um utilizador pode acumular papéis (um chefe de equipa pode ser Técnico e HelpDesk).
 
 ### 4.2. Matriz de permissões
 
-| Acção | Cliente | Técnico | HelpDesk | Admin |
-|---|:---:|:---:|:---:|:---:|
-| Submeter pedido | ✓ | ✓ | ✓ | ✓ |
-| Ver pedidos dos seus balcões | ✓ | — | — | — |
-| Ver pedidos que lhe estão atribuídos | — | ✓ | — | — |
-| Ver todos os pedidos | — | — | ✓ | ✓ |
-| Atribuir pedido a técnico | — | — | ✓ | ✓ |
-| Agendar hora de intervenção | — | ✓ | ✓ | ✓ |
-| Registar início/fim da intervenção | — | ✓ | — | ✓ |
-| Fechar pedido | — | ✓ | ✓ | ✓ |
-| Cancelar pedido | ✓* | — | ✓ | ✓ |
-| Criar/editar utilizadores | — | — | — | ✓ |
-| Inserir/remover equipamento | — | — | ✓ | ✓ |
-| Gerir clientes e balcões | — | — | — | ✓ |
-| Consultar relatórios | ✓** | — | ✓ | ✓ |
+
+| Acção                                | Cliente | Técnico | HelpDesk | Admin |
+| ------------------------------------ | ------- | ------- | -------- | ----- |
+| Submeter pedido                      | ✓       | ✓       | ✓        | ✓     |
+| Ver pedidos dos seus balcões         | ✓       | —       | —        | —     |
+| Ver pedidos que lhe estão atribuídos | —       | ✓       | —        | —     |
+| Ver todos os pedidos                 | —       | —       | ✓        | ✓     |
+| Atribuir pedido a técnico            | —       | —       | ✓        | ✓     |
+| Agendar hora de intervenção          | —       | ✓       | ✓        | ✓     |
+| Registar início/fim da intervenção   | —       | ✓       | —        | ✓     |
+| Fechar pedido                        | —       | ✓       | ✓        | ✓     |
+| Cancelar pedido                      | ✓*      | —       | ✓        | ✓     |
+| Criar/editar utilizadores            | —       | —       | —        | ✓     |
+| Inserir/remover equipamento          | —       | —       | ✓        | ✓     |
+| Gerir clientes e balcões             | —       | —       | —        | ✓     |
+| Consultar relatórios                 | ✓**     | —       | ✓        | ✓     |
+
 
 `*` apenas o próprio autor do pedido, e apenas antes do início da intervenção.
 `**` apenas relatórios respeitantes aos seus balcões.
 
 ---
 
+
+
 ## 5. Requisitos funcionais
+
+
 
 ### 5.1. Autenticação e utilizadores
 
-| N.º | Requisito | Descrição | Prioridade |
-|---|---|---|---|
-| RF01 | Autenticação | Autenticação por email e palavra-passe, sessão única por conta. Bloqueio temporário após 5 tentativas falhadas. | Deve |
-| RF02 | Criação de utilizadores por convite | O Administrador regista o utilizador (nome, email, papel, cliente/balcões associados) e o sistema envia convite. Cada pessoa tem conta individual; não há contas partilhadas por balcão. **A palavra-passe é definida pelo próprio utilizador**, nunca atribuída pelo administrador. | Deve |
-| RF03 | Recuperação de palavra-passe | Fluxo autónomo de reposição por email, com token de validade limitada. | Deve |
-| RF04 | Desactivação de utilizadores | Contas são desactivadas, nunca eliminadas, para preservar a integridade do histórico. | Deve |
 
-> **Alteração face ao documento original:** o RF04 original previa que o administrador atribuísse senhas e IDs manualmente. É uma prática insegura (a senha circula em canal legível e é conhecida por terceiros) e insustentável à escala do parque. Substituído pelo mecanismo de convite.
+| N.º  | Requisito                           | Descrição                                                                                                                                                                                                                                                                            | Prioridade |
+| ---- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- |
+| RF01 | Autenticação                        | Autenticação por email e palavra-passe, sessão única por conta. Bloqueio temporário após 5 tentativas falhadas.                                                                                                                                                                      | Deve       |
+| RF02 | Criação de utilizadores por convite | O Administrador regista o utilizador (nome, email, papel, cliente/balcões associados) e o sistema envia convite. Cada pessoa tem conta individual; não há contas partilhadas por balcão. **A palavra-passe é definida pelo próprio utilizador**, nunca atribuída pelo administrador. | Deve       |
+| RF03 | Recuperação de palavra-passe        | Fluxo autónomo de reposição por email, com token de validade limitada.                                                                                                                                                                                                               | Deve       |
+| RF04 | Desactivação de utilizadores        | Contas são desactivadas, nunca eliminadas, para preservar a integridade do histórico.                                                                                                                                                                                                | Deve       |
+
+
+
 
 ### 5.2. Parque de equipamento
 
-| N.º | Requisito | Descrição | Prioridade |
-|---|---|---|---|
-| RF05 | Gestão de clientes | Registo de clientes de outsourcing com o respectivo SLA contratado em horas (valor por omissão: 24) e horário de contagem. | Deve |
-| RF06 | Gestão de balcões | Registo de balcões por cliente, com designação e localização. Um pedido é sempre imputável a um balcão. | Deve |
-| RF07 | Gestão de impressoras | Registo de impressoras com marca/modelo, número de série, número interno, balcão de alocação e estado (activa, em reparação, retirada). | Deve |
-| RF08 | Transferência de equipamento | Uma impressora pode ser movida entre balcões, mantendo o histórico associado à máquina. | Deve |
-| RF09 | Atribuição técnico–balcão | Cada balcão tem um técnico principal atribuído e, opcionalmente, técnicos suplentes. Resolve a falha P3. | Deve |
-| RF10 | Importação inicial do parque | Carregamento do parque existente por ficheiro (CSV/Excel), com validação e relatório de erros. | Deve |
+
+| N.º  | Requisito                    | Descrição                                                                                                                               | Prioridade |
+| ---- | ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| RF05 | Gestão de clientes           | Registo de clientes de outsourcing com o respectivo SLA contratado em horas (valor por omissão: 24) e horário de contagem.              | Deve       |
+| RF06 | Gestão de balcões            | Registo de balcões por cliente, com designação e localização. Um pedido é sempre imputável a um balcão.                                 | Deve       |
+| RF07 | Gestão de impressoras        | Registo de impressoras com marca/modelo, número de série, número interno, balcão de alocação e estado (activa, em reparação, retirada). | Deve       |
+| RF08 | Transferência de equipamento | Uma impressora pode ser movida entre balcões, mantendo o histórico associado à máquina.                                                 | Deve       |
+| RF09 | Atribuição técnico–balcão    | Cada balcão tem um técnico principal atribuído e, opcionalmente, técnicos suplentes. Resolve a falha P3.                                | Deve       |
+| RF10 | Importação inicial do parque | Carregamento do parque existente por ficheiro (CSV/Excel), com validação e relatório de erros.                                          | Deve       |
+
+
+
 
 ### 5.3. Ciclo de vida do pedido
 
-| N.º | Requisito | Descrição | Prioridade |
-|---|---|---|---|
-| RF11 | Submissão de pedido | O utilizador selecciona a impressora do seu balcão, escolhe o tipo de pedido (avaria, manutenção preventiva, visita de cortesia), descreve o sintoma e submete. O sistema gera um número de pedido sequencial. | Deve |
-| RF12 | Anexos | Possibilidade de anexar fotografias (do painel de erro, do estado da máquina) na submissão e durante a intervenção. Máx. 5 ficheiros, 5 MB cada. | Deve |
-| RF13 | Atribuição | Na submissão, o pedido é atribuído automaticamente ao técnico principal do balcão. O HelpDesk pode reatribuir a qualquer momento. | Deve |
-| RF14 | Agendamento | O técnico ou o HelpDesk indica a data e hora previstas de intervenção. É um campo do pedido, alterável a qualquer momento, e não altera o estado. | Deve |
-| RF15 | Actualização de pedido | Qualquer alteração (novo comentário, reagendamento, mudança de técnico, mudança de estado) gera um registo de evento. Nenhuma actualização substitui informação anterior. | Deve |
-| RF16 | Registo de intervenção | No local, o técnico regista o início — o pedido passa a em reparação. Ao concluir, regista o fim e um resumo do trabalho realizado, e o pedido passa a fechado. O resumo é obrigatório. | Deve |
-| RF17 | Checklist de intervenção | Preenchimento de uma checklist do estado da máquina no fecho da intervenção. Os itens da checklist são configuráveis pelo Administrador. | Deve |
-| RF18 | Leitura de contador | Registo obrigatório do contador de cópias no fecho de cada intervenção. | Deve |
-| RF19 | Consumíveis e peças | Registo dos consumíveis e peças substituídos na intervenção. | Deveria |
-| RF20 | Fecho de pedido | Só o Técnico ou o HelpDesk podem fechar um pedido. O Cliente não tem essa permissão. | Deve |
-| RF21 | Cancelamento | Um pedido pode ser cancelado com justificação obrigatória, antes do início da intervenção. | Deve |
-| RF22 | Consulta de estado | O Cliente consulta em qualquer momento o estado e o histórico dos pedidos dos seus balcões. | Deve |
+
+| N.º  | Requisito                | Descrição                                                                                                                                                                                                      | Prioridade |
+| ---- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| RF11 | Submissão de pedido      | O utilizador selecciona a impressora do seu balcão, escolhe o tipo de pedido (avaria, manutenção preventiva, visita de cortesia), descreve o sintoma e submete. O sistema gera um número de pedido sequencial. | Deve       |
+| RF12 | Anexos                   | Possibilidade de anexar fotografias (do painel de erro, do estado da máquina) na submissão e durante a intervenção. Máx. 5 ficheiros, 5 MB cada.                                                               | Deve       |
+| RF13 | Atribuição               | Na submissão, o pedido é atribuído automaticamente ao técnico principal do balcão. O HelpDesk pode reatribuir a qualquer momento.                                                                              | Deve       |
+| RF14 | Agendamento              | O técnico ou o HelpDesk indica a data e hora previstas de intervenção. É um campo do pedido, alterável a qualquer momento, e não altera o estado.                                                              | Deve       |
+| RF15 | Actualização de pedido   | Qualquer alteração (novo comentário, reagendamento, mudança de técnico, mudança de estado) gera um registo de evento. Nenhuma actualização substitui informação anterior.                                      | Deve       |
+| RF16 | Registo de intervenção   | No local, o técnico regista o início — o pedido passa a em reparação. Ao concluir, regista o fim e um resumo do trabalho realizado, e o pedido passa a fechado. O resumo é obrigatório.                        | Deve       |
+| RF17 | Checklist de intervenção | Preenchimento de uma checklist do estado da máquina no fecho da intervenção. Os itens da checklist são configuráveis pelo Administrador.                                                                       | Deve       |
+| RF18 | Leitura de contador      | Registo obrigatório do contador de cópias no fecho de cada intervenção.                                                                                                                                        | Deve       |
+| RF19 | Consumíveis e peças      | Registo dos consumíveis e peças substituídos na intervenção.                                                                                                                                                   | Deveria    |
+| RF20 | Fecho de pedido          | Só o Técnico ou o HelpDesk podem fechar um pedido. O Cliente não tem essa permissão.                                                                                                                           | Deve       |
+| RF21 | Cancelamento             | Um pedido pode ser cancelado com justificação obrigatória, antes do início da intervenção.                                                                                                                     | Deve       |
+| RF22 | Consulta de estado       | O Cliente consulta em qualquer momento o estado e o histórico dos pedidos dos seus balcões.                                                                                                                    | Deve       |
+
+
+
 
 ### 5.4. Manutenção preventiva
 
-| N.º | Requisito | Descrição | Prioridade |
-|---|---|---|---|
-| RF24 | Plano de manutenção | Cada impressora tem uma periodicidade de manutenção preventiva configurável, com valor por omissão de 2 meses. | Deve |
-| RF25 | Geração automática | O sistema gera automaticamente o pedido de manutenção preventiva na data prevista, atribuindo-o ao técnico do balcão. | Deve |
-| RF26 | Calendário de manutenções | Vista de calendário das manutenções previstas por técnico e por balcão. | Deveria |
+
+| N.º  | Requisito                 | Descrição                                                                                                             | Prioridade |
+| ---- | ------------------------- | --------------------------------------------------------------------------------------------------------------------- | ---------- |
+| RF24 | Plano de manutenção       | Cada impressora tem uma periodicidade de manutenção preventiva configurável, com valor por omissão de 2 meses.        | Deve       |
+| RF25 | Geração automática        | O sistema gera automaticamente o pedido de manutenção preventiva na data prevista, atribuindo-o ao técnico do balcão. | Deve       |
+| RF26 | Calendário de manutenções | Vista de calendário das manutenções previstas por técnico e por balcão.                                               | Deveria    |
+
+
+
 
 ### 5.5. Notificações
 
 > **Secção nova.** É a lacuna mais grave do documento original: um portal que exige que alguém se lembre de o consultar não resolve as falhas P2 e P5 — apenas muda o sítio onde a informação fica parada.
 
-| N.º | Requisito | Descrição | Prioridade |
-|---|---|---|---|
-| RF27 | Notificação de atribuição | O técnico é notificado imediatamente quando um pedido lhe é atribuído, com balcão, máquina e sintoma. | Deve |
-| RF28 | Notificação de fecho | O HelpDesk e o autor do pedido são notificados no fecho da intervenção. | Deve |
-| RF29 | Alerta de SLA em risco | Alerta ao HelpDesk quando um pedido atinge 75% do SLA contratado sem intervenção iniciada (com SLA de 24 horas, ao fim de 18 horas úteis). | Deve |
-| RF30 | Canais | Notificação por email e por SMS. O SMS é obrigatório para o técnico de campo — a fiabilidade do email em mobilidade não é suficiente. Canal configurável por utilizador. | Deve |
-| RF31 | Alerta de reincidência | Alerta ao Administrador e ao HelpDesk quando a mesma máquina gera mais de 2 pedidos de avaria em 15 dias. Visível apenas para estes papéis. | Deve |
+
+| N.º  | Requisito                 | Descrição                                                                                                                                                                | Prioridade |
+| ---- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- |
+| RF27 | Notificação de atribuição | O técnico é notificado imediatamente quando um pedido lhe é atribuído, com balcão, máquina e sintoma.                                                                    | Deve       |
+| RF28 | Notificação de fecho      | O HelpDesk e o autor do pedido são notificados no fecho da intervenção.                                                                                                  | Deve       |
+| RF29 | Alerta de SLA em risco    | Alerta ao HelpDesk quando um pedido atinge 75% do SLA contratado sem intervenção iniciada (com SLA de 24 horas, ao fim de 18 horas úteis).                               | Deve       |
+| RF30 | Canais                    | Notificação por email e por SMS. O SMS é obrigatório para o técnico de campo — a fiabilidade do email em mobilidade não é suficiente. Canal configurável por utilizador. | Deve       |
+| RF31 | Alerta de reincidência    | Alerta ao Administrador e ao HelpDesk quando a mesma máquina gera mais de 2 pedidos de avaria em 15 dias. Visível apenas para estes papéis.                              | Deve       |
+
+
+
 
 ### 5.6. Relatórios
 
-| N.º | Requisito | Descrição | Prioridade |
-|---|---|---|---|
-| RF32 | Histórico por máquina | Lista completa de pedidos de uma impressora, com datas, técnicos, sintomas, trabalho realizado e contadores. | Deve |
-| RF33 | Cumprimento de SLA | Relatório por cliente e por período: número de pedidos, tempo médio de resposta, percentagem dentro do SLA. | Deve |
-| RF34 | Produtividade por técnico | Relatório bimestral de pedidos executados e fechados por técnico, para efeitos de cálculo de bónus por eficiência. | Deve |
-| RF35 | Máquinas problemáticas | Ranking de máquinas por número de avarias no período, com evolução dos contadores. | Deveria |
-| RF36 | Exportação | Exportação de qualquer relatório em Excel e PDF. | Deveria |
+
+| N.º  | Requisito                 | Descrição                                                                                                          | Prioridade |
+| ---- | ------------------------- | ------------------------------------------------------------------------------------------------------------------ | ---------- |
+| RF32 | Histórico por máquina     | Lista completa de pedidos de uma impressora, com datas, técnicos, sintomas, trabalho realizado e contadores.       | Deve       |
+| RF33 | Cumprimento de SLA        | Relatório por cliente e por período: número de pedidos, tempo médio de resposta, percentagem dentro do SLA.        | Deve       |
+| RF34 | Produtividade por técnico | Relatório bimestral de pedidos executados e fechados por técnico, para efeitos de cálculo de bónus por eficiência. | Deve       |
+| RF35 | Máquinas problemáticas    | Ranking de máquinas por número de avarias no período, com evolução dos contadores.                                 | Deveria    |
+| RF36 | Exportação                | Exportação de qualquer relatório em Excel e PDF.                                                                   | Deveria    |
+
 
 ---
+
+
 
 ## 6. Máquina de estados do pedido
 
@@ -216,15 +270,17 @@ Quatro estados no percurso normal, mais um terminal de excepção.
            └─────────────┘
 ```
 
-| Estado | Significado | Transições permitidas |
-|---|---|---|
-| `submetido` | Registado, ainda sem técnico | → atribuído, cancelado |
-| `atribuído` | Técnico responsável definido; pode ter data prevista | → em reparação, cancelado |
-| `em reparação` | Técnico iniciou a intervenção | → fechado |
-| `fechado` | Trabalho concluído e resumido | — (terminal) |
-| `cancelado` | Anulado com justificação | — (terminal) |
 
-**O estado `em reparação` absorve toda a duração do trabalho.** Se faltar uma peça, se for preciso encomendar material ou se o técnico tiver de voltar noutro dia, o pedido mantém-se em reparação e o técnico acrescenta comentários com o ponto de situação. Não há estados de suspensão nem pedidos duplicados: uma avaria é um pedido, do princípio ao fim.
+| Estado         | Significado                                          | Transições permitidas     |
+| -------------- | ---------------------------------------------------- | ------------------------- |
+| `submetido`    | Registado, ainda sem técnico                         | → atribuído, cancelado    |
+| `atribuído`    | Técnico responsável definido; pode ter data prevista | → em reparação, cancelado |
+| `em reparação` | Técnico iniciou a intervenção                        | → fechado                 |
+| `fechado`      | Trabalho concluído e resumido                        | — (terminal)              |
+| `cancelado`    | Anulado com justificação                             | — (terminal)              |
+
+
+**O estado** `em reparação` **absorve toda a duração do trabalho.** Se faltar uma peça, se for preciso encomendar material ou se o técnico tiver de voltar noutro dia, o pedido mantém-se em reparação e o técnico acrescenta comentários com o ponto de situação. Não há estados de suspensão nem pedidos duplicados: uma avaria é um pedido, do princípio ao fim.
 
 **O agendamento é um campo, não um estado.** A data prevista de intervenção fica no campo `agendado_para` e pode ser alterada as vezes que forem necessárias sem mudar o estado do pedido.
 
@@ -237,86 +293,112 @@ Quatro estados no percurso normal, mais um terminal de excepção.
 
 ---
 
+
+
 ## 7. Regras de negócio
 
-| N.º | Regra |
-|---|---|
-| RN01 | Um pedido está sempre associado a exactamente uma impressora. Uma avaria em duas máquinas gera dois pedidos. |
-| RN02 | Um Utilizador Cliente só vê pedidos e equipamento dos balcões a que está associado. |
-| RN03 | O número de pedido é sequencial por ano, imutável e nunca reutilizado (formato `PI-2026-00147`). Pedidos migrados do processo anterior guardam a numeração antiga em `referencia_antiga`, sem interferir na sequência nova. |
-| RN04 | Um pedido não pode ser fechado sem resumo do trabalho realizado, checklist preenchida e leitura de contador. |
-| RN05 | Nenhum registo de pedido é eliminado. Cancelamento e desactivação são estados, não remoções. |
-| RN06 | A hora de fim de uma intervenção não pode ser anterior à hora de início. |
-| RN07 | Não é permitido submeter um novo pedido de avaria para uma impressora que já tem um pedido em aberto — o sistema encaminha para o pedido existente. |
+
+| N.º  | Regra                                                                                                                                                                                                                                                                     |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| RN01 | Um pedido está sempre associado a exactamente uma impressora. Uma avaria em duas máquinas gera dois pedidos.                                                                                                                                                              |
+| RN02 | Um Utilizador Cliente só vê pedidos e equipamento dos balcões a que está associado.                                                                                                                                                                                       |
+| RN03 | O número de pedido é sequencial por ano, imutável e nunca reutilizado (formato `PI-2026-00147`). Pedidos migrados do processo anterior guardam a numeração antiga em `referencia_antiga`, sem interferir na sequência nova.                                               |
+| RN04 | Um pedido não pode ser fechado sem resumo do trabalho realizado, checklist preenchida e leitura de contador.                                                                                                                                                              |
+| RN05 | Nenhum registo de pedido é eliminado. Cancelamento e desactivação são estados, não remoções.                                                                                                                                                                              |
+| RN06 | A hora de fim de uma intervenção não pode ser anterior à hora de início.                                                                                                                                                                                                  |
+| RN07 | Não é permitido submeter um novo pedido de avaria para uma impressora que já tem um pedido em aberto — o sistema encaminha para o pedido existente.                                                                                                                       |
 | RN08 | O SLA é de 24 horas por omissão, contado em horas úteis definidas por contrato e não em horas de calendário. Pedidos submetidos fora do horário laboral começam a contar na abertura do dia útil seguinte: um pedido submetido às 17h00 conta a partir da manhã seguinte. |
-| RN09 | O técnico principal do balcão tem prioridade na atribuição automática; na sua ausência, o pedido fica em `submetido` para triagem manual do HelpDesk. |
-| RN10 | O contador de cópias registado numa intervenção não pode ser inferior ao registado na intervenção anterior da mesma máquina. |
-| RN11 | Um pedido acompanha a avaria do princípio ao fim. Falta de peça, encomenda de material ou nova deslocação do técnico não geram novo pedido: o pedido permanece em reparação e o técnico regista o ponto de situação em comentário. |
-| RN12 | O SLA mede apenas o tempo até ao início da intervenção. A duração da reparação é registada e reportada, mas não está sujeita a prazo contratual. |
-| RN13 | Um pedido fechado não é reaberto. Se o problema voltar, abre-se novo pedido — que é precisamente o que alimenta o alerta de reincidência (RF31). |
+| RN09 | O técnico principal do balcão tem prioridade na atribuição automática; na sua ausência, o pedido fica em `submetido` para triagem manual do HelpDesk.                                                                                                                     |
+| RN10 | O contador de cópias registado numa intervenção não pode ser inferior ao registado na intervenção anterior da mesma máquina.                                                                                                                                              |
+| RN11 | Um pedido acompanha a avaria do princípio ao fim. Falta de peça, encomenda de material ou nova deslocação do técnico não geram novo pedido: o pedido permanece em reparação e o técnico regista o ponto de situação em comentário.                                        |
+| RN12 | O SLA mede apenas o tempo até ao início da intervenção. A duração da reparação é registada e reportada, mas não está sujeita a prazo contratual.                                                                                                                          |
+| RN13 | Um pedido fechado não é reaberto. Se o problema voltar, abre-se novo pedido — que é precisamente o que alimenta o alerta de reincidência (RF31).                                                                                                                          |
+
 
 ---
+
+
 
 ## 8. Requisitos não-funcionais
 
 > **Nota metodológica:** os RNF01 a RNF05 do documento original eram, na sua maioria, requisitos funcionais mal classificados (níveis de acesso, histórico, estado, relatórios, alertas). Foram reclassificados como RF acima. Os requisitos não-funcionais verdadeiros — os que descrevem *qualidades* do sistema e não *funções* — estavam ausentes e são estabelecidos aqui.
 
+
+
 ### 8.1. Disponibilidade e desempenho
 
-| N.º | Requisito | Critério |
-|---|---|---|
-| RNF01 | Disponibilidade | 99% em horário laboral (07h00–19h00, dias úteis) |
-| RNF02 | Tempo de resposta | Qualquer ecrã carrega em menos de 3 segundos numa ligação móvel de 3G |
-| RNF03 | Capacidade | 200 utilizadores registados e 30 sessões concorrentes na fase 1, escalável a 1000/100 sem alteração de arquitectura |
-| RNF04 | Volume | 500 pedidos/mês na fase 1; o modelo deve suportar 5 anos de histórico sem degradação de consulta |
+
+| N.º   | Requisito         | Critério                                                                                                            |
+| ----- | ----------------- | ------------------------------------------------------------------------------------------------------------------- |
+| RNF01 | Disponibilidade   | 99% em horário laboral (07h00–19h00, dias úteis)                                                                    |
+| RNF02 | Tempo de resposta | Qualquer ecrã carrega em menos de 3 segundos numa ligação móvel de 3G                                               |
+| RNF03 | Capacidade        | 200 utilizadores registados e 30 sessões concorrentes na fase 1, escalável a 1000/100 sem alteração de arquitectura |
+| RNF04 | Volume            | 500 pedidos/mês na fase 1; o modelo deve suportar 5 anos de histórico sem degradação de consulta                    |
+
+
+
 
 ### 8.2. Usabilidade e acesso
 
-| N.º | Requisito | Critério |
-|---|---|---|
-| RNF05 | Utilização em campo | Interface responsiva, utilizável num telemóvel de gama média. O registo de início e fim de intervenção é a operação mais frequente e deve estar a um toque do ecrã inicial do técnico. |
-| RNF06 | Tolerância a rede fraca | O formulário de registo de intervenção não pode perder dados por falha de ligação; submissão com reenvio automático. |
-| RNF07 | Idioma | Interface integralmente em português. |
-| RNF08 | Curva de aprendizagem | Um agente de balcão submete o primeiro pedido sem formação prévia, apenas com o guia de uma página. |
+
+| N.º   | Requisito               | Critério                                                                                                                                                                               |
+| ----- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| RNF05 | Utilização em campo     | Interface responsiva, utilizável num telemóvel de gama média. O registo de início e fim de intervenção é a operação mais frequente e deve estar a um toque do ecrã inicial do técnico. |
+| RNF06 | Tolerância a rede fraca | O formulário de registo de intervenção não pode perder dados por falha de ligação; submissão com reenvio automático.                                                                   |
+| RNF07 | Idioma                  | Interface integralmente em português.                                                                                                                                                  |
+| RNF08 | Curva de aprendizagem   | Um agente de balcão submete o primeiro pedido sem formação prévia, apenas com o guia de uma página.                                                                                    |
+
+
+
 
 ### 8.3. Segurança
 
-| N.º | Requisito | Critério |
-|---|---|---|
-| RNF09 | Transporte | Todo o tráfego em HTTPS. |
-| RNF10 | Palavras-passe | Armazenadas com hash (bcrypt/argon2). Mínimo 8 caracteres. |
-| RNF11 | Isolamento de dados | Um cliente nunca acede a dados de outro cliente. Verificação obrigatória ao nível da consulta, não apenas da interface. |
-| RNF12 | Registo de auditoria | Todas as acções sobre pedidos, utilizadores e equipamento ficam registadas com autor, data/hora e valores alterados. |
-| RNF13 | Sessão | Terminação automática após 8 horas de inactividade. |
+
+| N.º   | Requisito            | Critério                                                                                                                |
+| ----- | -------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| RNF09 | Transporte           | Todo o tráfego em HTTPS.                                                                                                |
+| RNF10 | Palavras-passe       | Armazenadas com hash (bcrypt/argon2). Mínimo 8 caracteres.                                                              |
+| RNF11 | Isolamento de dados  | Um cliente nunca acede a dados de outro cliente. Verificação obrigatória ao nível da consulta, não apenas da interface. |
+| RNF12 | Registo de auditoria | Todas as acções sobre pedidos, utilizadores e equipamento ficam registadas com autor, data/hora e valores alterados.    |
+| RNF13 | Sessão               | Terminação automática após 8 horas de inactividade.                                                                     |
+
+
+
 
 ### 8.4. Dados e manutenção
 
-| N.º | Requisito | Critério |
-|---|---|---|
-| RNF14 | Retenção | Histórico de pedidos retido no mínimo 5 anos, alinhado com a duração dos contratos de outsourcing. |
-| RNF15 | Cópias de segurança | Backup diário automático da base de dados, com teste de restauro trimestral. |
-| RNF16 | Fuso horário | Todos os registos temporais armazenados em UTC e apresentados em CAT (UTC+2). |
-| RNF17 | Integração futura | O modelo deve permitir exportação de contadores e intervenções para o sistema de facturação, sem redesenho. |
+
+| N.º   | Requisito           | Critério                                                                                                    |
+| ----- | ------------------- | ----------------------------------------------------------------------------------------------------------- |
+| RNF14 | Retenção            | Histórico de pedidos retido no mínimo 5 anos, alinhado com a duração dos contratos de outsourcing.          |
+| RNF15 | Cópias de segurança | Backup diário automático da base de dados, com teste de restauro trimestral.                                |
+| RNF16 | Fuso horário        | Todos os registos temporais armazenados em UTC e apresentados em CAT (UTC+2).                               |
+| RNF17 | Integração futura   | O modelo deve permitir exportação de contadores e intervenções para o sistema de facturação, sem redesenho. |
+
 
 ---
+
+
 
 ## 9. Modelo de domínio
 
 Entidades principais e razão de existir:
 
-| Entidade | Papel |
-|---|---|
-| `utilizador` | Pessoa autenticável. Papel como atributo, não como subclasse. |
-| `cliente` | Organização contratante, de qualquer sector. Define o SLA e o horário de contagem. |
-| `balcao` | Instalação física. Unidade de atribuição de técnicos e de visibilidade do cliente. Um cliente com um único local tem um único balcão. |
-| `impressora` | Equipamento alocado a um balcão. Detentor do histórico. |
-| `atribuicao` | Ligação técnico–balcão, com indicação de principal ou suplente. |
-| `pedido` | Registo da solicitação. Estado actual e marcos temporais. |
-| `pedido_evento` | Registo append-only de tudo o que aconteceu ao pedido. Fonte de verdade do histórico. |
-| `checklist_item` / `checklist_resposta` | Modelo configurável e respostas por intervenção. |
-| `plano_manutencao` | Periodicidade e próxima data por máquina. |
-| `anexo` | Ficheiros associados a pedido ou evento. |
-| `consumivel_usado` | Peças e consumíveis por intervenção. |
+
+| Entidade                                | Papel                                                                                                                                 |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `utilizador`                            | Pessoa autenticável. Papel como atributo, não como subclasse.                                                                         |
+| `cliente`                               | Organização contratante, de qualquer sector. Define o SLA e o horário de contagem.                                                    |
+| `balcao`                                | Instalação física. Unidade de atribuição de técnicos e de visibilidade do cliente. Um cliente com um único local tem um único balcão. |
+| `impressora`                            | Equipamento alocado a um balcão. Detentor do histórico.                                                                               |
+| `atribuicao`                            | Ligação técnico–balcão, com indicação de principal ou suplente.                                                                       |
+| `pedido`                                | Registo da solicitação. Estado actual e marcos temporais.                                                                             |
+| `pedido_evento`                         | Registo append-only de tudo o que aconteceu ao pedido. Fonte de verdade do histórico.                                                 |
+| `checklist_item` / `checklist_resposta` | Modelo configurável e respostas por intervenção.                                                                                      |
+| `plano_manutencao`                      | Periodicidade e próxima data por máquina.                                                                                             |
+| `anexo`                                 | Ficheiros associados a pedido ou evento.                                                                                              |
+| `consumivel_usado`                      | Peças e consumíveis por intervenção.                                                                                                  |
+
 
 **Princípios de modelação a respeitar:**
 
@@ -327,6 +409,8 @@ Entidades principais e razão de existir:
 5. O modelo é independente da tecnologia: mantém-se inalterado com Java/JPA. Muda apenas o mapeamento, tratado na secção 13.4.
 
 ---
+
+
 
 ## 10. Fora de âmbito
 
@@ -341,49 +425,63 @@ Explicitamente **não** incluído nesta especificação:
 
 ---
 
+
+
 ## 11. Faseamento e entregas
 
 O trabalho é dividido em entregas, cada uma correspondendo a um conjunto de funcionalidades que fica a funcionar por si. É esta divisão que serve de base ao cronograma e à facturação da proposta comercial.
 
 ### Fase 0 — Arranque (2 semanas)
 
-| Entrega | Âmbito |
-|---|---|
-| E0 | Requisitos validados, protótipo dos ecrãs aprovado, modelo de dados fechado e ambiente preparado |
+
+| Entrega | Âmbito                                                                                           |
+| ------- | ------------------------------------------------------------------------------------------------ |
+| E0      | Requisitos validados, protótipo dos ecrãs aprovado, modelo de dados fechado e ambiente preparado |
+
+
+
 
 ### Fase 1 — Núcleo operacional (8 semanas)
 
-| Entrega | Âmbito | Requisitos |
-|---|---|---|
-| E1 | Autenticação, contas individuais e perfis de acesso | RF01–RF04 |
-| E2 | Cadastro de clientes, balcões e impressoras, com importação do parque | RF05–RF08, RF10 |
-| E3 | Atribuição de técnicos por balcão e submissão do pedido pelo cliente | RF09, RF11, RF12 |
-| E4 | Ciclo do pedido: atribuição, agendamento, fecho e histórico de eventos | RF13–RF16, RF20, RF21 |
-| E5 | Ecrã móvel do técnico para registo da intervenção no local | RF16, RNF05, RNF06 |
-| E6 | Notificações por email e SMS, e consulta de estado pelo cliente | RF22, RF27, RF28, RF30, RF32 |
+
+| Entrega | Âmbito                                                                 | Requisitos                   |
+| ------- | ---------------------------------------------------------------------- | ---------------------------- |
+| E1      | Autenticação, contas individuais e perfis de acesso                    | RF01–RF04                    |
+| E2      | Cadastro de clientes, balcões e impressoras, com importação do parque  | RF05–RF08, RF10              |
+| E3      | Atribuição de técnicos por balcão e submissão do pedido pelo cliente   | RF09, RF11, RF12             |
+| E4      | Ciclo do pedido: atribuição, agendamento, fecho e histórico de eventos | RF13–RF16, RF20, RF21        |
+| E5      | Ecrã móvel do técnico para registo da intervenção no local             | RF16, RNF05, RNF06           |
+| E6      | Notificações por email e SMS, e consulta de estado pelo cliente        | RF22, RF27, RF28, RF30, RF32 |
+
 
 Objectivo: substituir integralmente o email como canal de pedidos.
 
 ### Fase 2 — Controlo e prevenção (4 semanas)
 
-| Entrega | Âmbito | Requisitos |
-|---|---|---|
-| E7 | Manutenção preventiva automática com calendário | RF24–RF26 |
-| E8 | Checklist de intervenção, contador de cópias e consumíveis | RF17–RF19 |
-| E9 | Alerta de reincidência e medição do prazo de resposta | RF29, RF31, RF33 |
+
+| Entrega | Âmbito                                                     | Requisitos       |
+| ------- | ---------------------------------------------------------- | ---------------- |
+| E7      | Manutenção preventiva automática com calendário            | RF24–RF26        |
+| E8      | Checklist de intervenção, contador de cópias e consumíveis | RF17–RF19        |
+| E9      | Alerta de reincidência e medição do prazo de resposta      | RF29, RF31, RF33 |
+
 
 Objectivo: manutenção preventiva automática e medição do SLA de 24 horas.
 
 ### Fase 3 — Gestão (2 semanas)
 
-| Entrega | Âmbito | Requisitos |
-|---|---|---|
-| E10 | Relatórios de prazos, produtividade por técnico e máquinas problemáticas | RF33–RF35 |
-| E11 | Exportação em Excel e PDF | RF36, RNF17 |
+
+| Entrega | Âmbito                                                                   | Requisitos  |
+| ------- | ------------------------------------------------------------------------ | ----------- |
+| E10     | Relatórios de prazos, produtividade por técnico e máquinas problemáticas | RF33–RF35   |
+| E11     | Exportação em Excel e PDF                                                | RF36, RNF17 |
+
 
 Objectivo: relatórios de gestão, bónus por eficiência e preparação da integração com facturação.
 
 ---
+
+
 
 ## 12. Decisões em aberto
 
@@ -461,20 +559,28 @@ Não dependem do cliente, mas devem estar fechadas antes do Sprint 1:
 
 ---
 
+
+
 ## 13. Arquitectura técnica — Java + React
+
+
 
 ### 13.1. Componentes
 
-| Camada | Tecnologia | Observações |
-|---|---|---|
-| Backend | Java 21 + Spring Boot 3.x | API REST, sem renderização de páginas |
-| Segurança | Spring Security + JWT | Token de acesso curto e refresh token |
-| Persistência | Spring Data JPA (Hibernate) + MySQL 8 | Migrações versionadas com Flyway |
-| Tarefas agendadas | Spring Scheduler | Manutenção preventiva, alertas de SLA e reincidência |
-| Frontend | React + Vite + TypeScript | Interface única, responsiva, servida como estáticos |
-| Estado remoto | TanStack Query | Cache, revalidação e gestão de erros de rede |
-| Testes | JUnit 5 + Testcontainers | Testes de integração contra MySQL real |
-| Distribuição | JAR executável + Nginx | React compilado servido pelo Nginx, API por proxy |
+
+| Camada            | Tecnologia                            | Observações                                          |
+| ----------------- | ------------------------------------- | ---------------------------------------------------- |
+| Backend           | Java 21 + Spring Boot 3.x             | API REST, sem renderização de páginas                |
+| Segurança         | Spring Security + JWT                 | Token de acesso curto e refresh token                |
+| Persistência      | Spring Data JPA (Hibernate) + MySQL 8 | Migrações versionadas com Flyway                     |
+| Tarefas agendadas | Spring Scheduler                      | Manutenção preventiva, alertas de SLA e reincidência |
+| Frontend          | React + Vite + TypeScript             | Interface única, responsiva, servida como estáticos  |
+| Estado remoto     | TanStack Query                        | Cache, revalidação e gestão de erros de rede         |
+| Testes            | JUnit 5 + Testcontainers              | Testes de integração contra MySQL real               |
+| Distribuição      | JAR executável + Nginx                | React compilado servido pelo Nginx, API por proxy    |
+
+
+
 
 ### 13.2. Decisões que decorrem dos requisitos
 
@@ -508,6 +614,8 @@ com.ricotecnica.portal
 └── comum         erros, auditoria, configuração, segurança
 ```
 
+
+
 ### 13.4. Mapeamento do modelo de dados
 
 O modelo de domínio da secção 9 mantém-se sem alterações. Notas de implementação:
@@ -521,6 +629,8 @@ O modelo de domínio da secção 9 mantém-se sem alterações. Notas de impleme
 
 ---
 
+
+
 ## 14. Contrato da API — MVP
 
 Convenções aplicáveis a todos os recursos:
@@ -531,58 +641,74 @@ Convenções aplicáveis a todos os recursos:
 - Erros no formato *Problem Details* (RFC 7807), com `type`, `title`, `status`, `detail` e, para erros de validação, `errors` por campo.
 - As transições de estado são recursos de acção (`POST /pedidos/{id}/iniciar`), não um `PATCH` ao campo `estado`. Isto impede que a interface force um estado ilegal.
 
+
+
 ### 14.1. Autenticação
 
-| Método | Endpoint | Descrição |
-|---|---|---|
-| POST | `/auth/login` | Autenticação; devolve token de acesso e refresh |
-| POST | `/auth/refresh` | Renova o token de acesso |
-| POST | `/auth/logout` | Invalida o refresh token |
-| POST | `/auth/convite/{token}` | Define a palavra-passe a partir do convite (RF02) |
-| POST | `/auth/recuperar` | Pedido de reposição de palavra-passe |
-| GET | `/me` | Perfil, papéis e balcões do utilizador autenticado |
+
+| Método | Endpoint                | Descrição                                          |
+| ------ | ----------------------- | -------------------------------------------------- |
+| POST   | `/auth/login`           | Autenticação; devolve token de acesso e refresh    |
+| POST   | `/auth/refresh`         | Renova o token de acesso                           |
+| POST   | `/auth/logout`          | Invalida o refresh token                           |
+| POST   | `/auth/convite/{token}` | Define a palavra-passe a partir do convite (RF02)  |
+| POST   | `/auth/recuperar`       | Pedido de reposição de palavra-passe               |
+| GET    | `/me`                   | Perfil, papéis e balcões do utilizador autenticado |
+
+
+
 
 ### 14.2. Parque
 
-| Método | Endpoint | Descrição |
-|---|---|---|
-| GET/POST | `/clientes` | Listar e criar clientes |
-| GET/PUT | `/clientes/{id}` | Detalhe e actualização |
-| GET/POST | `/balcoes` | Listar (filtro `?clienteId=`) e criar |
-| GET/PUT | `/balcoes/{id}` | Detalhe e actualização |
-| GET/POST | `/impressoras` | Listar (filtros `?balcaoId=`, `?estado=`) e criar |
-| GET/PUT | `/impressoras/{id}` | Detalhe e actualização |
-| POST | `/impressoras/importar` | Importação por ficheiro; devolve linhas aceites e rejeitadas |
-| GET/POST | `/balcoes/{id}/tecnicos` | Consultar e definir atribuições técnico–balcão |
-| GET/POST | `/utilizadores` | Listar e convidar utilizadores |
-| PUT | `/utilizadores/{id}/estado` | Activar ou desactivar |
+
+| Método   | Endpoint                    | Descrição                                                    |
+| -------- | --------------------------- | ------------------------------------------------------------ |
+| GET/POST | `/clientes`                 | Listar e criar clientes                                      |
+| GET/PUT  | `/clientes/{id}`            | Detalhe e actualização                                       |
+| GET/POST | `/balcoes`                  | Listar (filtro `?clienteId=`) e criar                        |
+| GET/PUT  | `/balcoes/{id}`             | Detalhe e actualização                                       |
+| GET/POST | `/impressoras`              | Listar (filtros `?balcaoId=`, `?estado=`) e criar            |
+| GET/PUT  | `/impressoras/{id}`         | Detalhe e actualização                                       |
+| POST     | `/impressoras/importar`     | Importação por ficheiro; devolve linhas aceites e rejeitadas |
+| GET/POST | `/balcoes/{id}/tecnicos`    | Consultar e definir atribuições técnico–balcão               |
+| GET/POST | `/utilizadores`             | Listar e convidar utilizadores                               |
+| PUT      | `/utilizadores/{id}/estado` | Activar ou desactivar                                        |
+
+
+
 
 ### 14.3. Pedidos
 
-| Método | Endpoint | Descrição |
-|---|---|---|
-| GET | `/pedidos` | Lista filtrada por papel; filtros `?estado=`, `?balcaoId=`, `?tecnicoId=`, `?de=`, `?ate=` |
-| POST | `/pedidos` | Submissão; aceita cabeçalho `Idempotency-Key` |
-| GET | `/pedidos/{id}` | Detalhe completo com estado actual |
-| GET | `/pedidos/{id}/eventos` | Histórico cronológico de eventos |
-| POST | `/pedidos/{id}/atribuir` | Atribuir ou reatribuir técnico |
-| POST | `/pedidos/{id}/agendar` | Definir ou alterar a data e hora previstas |
-| POST | `/pedidos/{id}/iniciar` | Registar início da intervenção (→ em reparação) |
-| POST | `/pedidos/{id}/fechar` | Resumo do trabalho, checklist e contador (→ fechado) |
-| POST | `/pedidos/{id}/cancelar` | Cancelamento com justificação obrigatória |
-| POST | `/pedidos/{id}/comentarios` | Comentário livre, gravado como evento |
-| POST | `/pedidos/{id}/anexos` | Upload de ficheiro (multipart) |
-| GET | `/impressoras/{id}/pedidos` | Histórico de pedidos da máquina (RF32) |
+
+| Método | Endpoint                    | Descrição                                                                                  |
+| ------ | --------------------------- | ------------------------------------------------------------------------------------------ |
+| GET    | `/pedidos`                  | Lista filtrada por papel; filtros `?estado=`, `?balcaoId=`, `?tecnicoId=`, `?de=`, `?ate=` |
+| POST   | `/pedidos`                  | Submissão; aceita cabeçalho `Idempotency-Key`                                              |
+| GET    | `/pedidos/{id}`             | Detalhe completo com estado actual                                                         |
+| GET    | `/pedidos/{id}/eventos`     | Histórico cronológico de eventos                                                           |
+| POST   | `/pedidos/{id}/atribuir`    | Atribuir ou reatribuir técnico                                                             |
+| POST   | `/pedidos/{id}/agendar`     | Definir ou alterar a data e hora previstas                                                 |
+| POST   | `/pedidos/{id}/iniciar`     | Registar início da intervenção (→ em reparação)                                            |
+| POST   | `/pedidos/{id}/fechar`      | Resumo do trabalho, checklist e contador (→ fechado)                                       |
+| POST   | `/pedidos/{id}/cancelar`    | Cancelamento com justificação obrigatória                                                  |
+| POST   | `/pedidos/{id}/comentarios` | Comentário livre, gravado como evento                                                      |
+| POST   | `/pedidos/{id}/anexos`      | Upload de ficheiro (multipart)                                                             |
+| GET    | `/impressoras/{id}/pedidos` | Histórico de pedidos da máquina (RF32)                                                     |
+
+
+
 
 ### 14.4. Códigos de resposta relevantes
 
-| Código | Situação |
-|---|---|
-| 400 | Dados inválidos (campo obrigatório em falta, contador inferior ao anterior) |
-| 401 | Token ausente ou expirado |
-| 403 | Papel sem permissão para a acção, ou tentativa de aceder a outro cliente |
-| 409 | Transição de estado ilegal, ou pedido já aberto para a mesma máquina (RN07) |
-| 422 | Regra de negócio violada (fecho sem checklist ou sem contador) |
+
+| Código | Situação                                                                    |
+| ------ | --------------------------------------------------------------------------- |
+| 400    | Dados inválidos (campo obrigatório em falta, contador inferior ao anterior) |
+| 401    | Token ausente ou expirado                                                   |
+| 403    | Papel sem permissão para a acção, ou tentativa de aceder a outro cliente    |
+| 409    | Transição de estado ilegal, ou pedido já aberto para a mesma máquina (RN07) |
+| 422    | Regra de negócio violada (fecho sem checklist ou sem contador)              |
+
 
 ---
 
