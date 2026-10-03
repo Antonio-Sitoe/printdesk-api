@@ -128,10 +128,9 @@ Inconsistências entre o DER e os requisitos. Convém resolvê-las antes da prim
 
 | # | Lacuna | Requisito afectado |
 |---|---|---|
-| L1 | `utilizador` tem um único `papel`, mas a §4.1 diz que um utilizador pode acumular papéis (ex.: Técnico + HelpDesk). | §4.1 |
-| L2 | Não existe uma tabela `utilizador_balcao`. O Utilizador Cliente está associado "a um ou mais balcões" e o RN02 limita a visibilidade por balcão, mas o DER só tem `cliente_id`. | Glossário, RN02, `GET /me` |
-| L3 | `pedido.resolvido_em` existe, mas a máquina de estados não tem o estado "resolvido": o fecho é feito num só passo. Ou se remove a coluna, ou se define quando é preenchida. | §6 |
-| L4 | A v2.5 diz que os anexos podem estar "associados a pedido ou evento", mas `anexo` só tem `pedido_id`. | §9, RF12 |
-| L5 | O `uuid` público só aparece no `utilizador`. | §13.4 |
-| L6 | Falta a tabela de outbox das notificações, que a §13.2 exige. | RF27–RF30 |
-| L7 | Falta guardar o canal de notificação preferido de cada utilizador (email ou SMS) e o seu telefone. | RF30 |
+| L1 | Não existe uma tabela `utilizador_balcao`. O Utilizador Cliente está associado "a um ou mais balcões" e o RN02 limita a visibilidade por balcão, mas o DER só tem `cliente_id`. | Glossário, RN02, `GET /me` |
+| L2 | `pedido.resolvido_em` existe, mas a máquina de estados não tem o estado "resolvido": o fecho é feito num só passo. Ou se remove a coluna, ou se define quando é preenchida. | §6 |
+| L3 | A v2.5 diz que os anexos podem estar "associados a pedido ou evento", mas `anexo` só tem `pedido_id`. | §9, RF12 |
+| L4 | O `uuid` público só aparece no `utilizador`. | §13.4 |
+| L5 | Falta a tabela de outbox das notificações, que a §13.2 exige. | RF27–RF30 |
+| L6 | Falta guardar o canal de notificação preferido de cada utilizador (email ou SMS) e o seu telefone. | RF30 |

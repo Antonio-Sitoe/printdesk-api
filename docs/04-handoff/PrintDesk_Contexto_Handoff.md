@@ -38,7 +38,7 @@ O portal substitui esse processo integralmente.
 
 ## 3. Actores e papéis
 
-Um único modelo de utilizador com 4 papéis:
+Um único modelo de utilizador com 4 papéis. Cada utilizador tem exactamente um papel:
 
 | Papel | O que faz |
 |---|---|

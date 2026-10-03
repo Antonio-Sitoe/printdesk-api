@@ -128,7 +128,7 @@ Não existe nenhuma camada intermediária entre o balcão e a Ricotecnica: é o 
 | **Administrador**         | Gere utilizadores, clientes, balcões, parque de equipamento e relatórios                 |
 
 
-**Princípio de modelação:** existe **uma única entidade Utilizador**. Os actores acima são *papéis* atribuídos a um utilizador, não tipos de pessoa distintos. Um utilizador pode acumular papéis (um chefe de equipa pode ser Técnico e HelpDesk).
+**Princípio de modelação:** existe **uma única entidade Utilizador**. Os actores acima são *papéis* atribuídos a um utilizador, não tipos de pessoa distintos. Cada utilizador tem **um único papel**.
 
 ### 4.2. Matriz de permissões
 
@@ -653,7 +653,7 @@ Convenções aplicáveis a todos os recursos:
 | POST   | `/auth/logout`          | Invalida o refresh token                           |
 | POST   | `/auth/convite/{token}` | Define a palavra-passe a partir do convite (RF02)  |
 | POST   | `/auth/recuperar`       | Pedido de reposição de palavra-passe               |
-| GET    | `/me`                   | Perfil, papéis e balcões do utilizador autenticado |
+| GET    | `/me`                   | Perfil, papel e balcões do utilizador autenticado |
 
 
 
